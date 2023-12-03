@@ -4,6 +4,7 @@ with open("first.data", "r") as f:
     lines = f.read().splitlines()
 
 
+# --------------- parse ---------------
 field = defaultdict(lambda: ".")
 for y, line in enumerate(lines):
     for x, symbol in enumerate(line):
@@ -21,6 +22,7 @@ for (x, y), symbol in list(field.items()).copy():
             right_symbol = field[(x+offset, y)]
         numbers[(x, y)] = symbol
 
+# --------------- silver ---------------
 def has_part_in_neighborhood(number, number_x, number_y):
     for x in range(number_x - 1, number_x + len(number) + 1):
         for y in range(number_y - 1, number_y + 2):
@@ -29,20 +31,27 @@ def has_part_in_neighborhood(number, number_x, number_y):
                 return True
     return False
 
-gears = {}  # {(x, y): [number1, number2,...], ...}
+count = 0
 for (number_x, number_y), number in numbers.items():
     if has_part_in_neighborhood(number, number_x, number_y):
-        for x in range(number_x - 1, number_x + len(number) + 1):
-            for y in range(number_y - 1, number_y + 2):
-                symbol = field[(x, y)]
-                if symbol == "*":
-                    if (x, y) not in gears:
-                        gears[(x, y)] = []
-                    gears[(x, y)].append(number)
+        count += int(number)
+
+print("silver", count)
+
+# --------------- gold ---------------
+gears = {}  # {(x, y): [number1, number2,...], ...}
+for (number_x, number_y), number in numbers.items():
+    for x in range(number_x - 1, number_x + len(number) + 1):
+        for y in range(number_y - 1, number_y + 2):
+            symbol = field[(x, y)]
+            if symbol == "*":
+                if (x, y) not in gears:
+                    gears[(x, y)] = []
+                gears[(x, y)].append(number)
 
 gold = 0
 for numbers in gears.values():
     if len(numbers) == 2:
         gold += int(numbers[0]) * int(numbers[1])
 
-print("gold", gold)
+print("gold", gold)  # 84051670
