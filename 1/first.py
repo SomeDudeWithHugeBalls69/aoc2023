@@ -1,4 +1,4 @@
-with open("first.txt", "r") as f:
+with open("data.txt", "r") as f:
     lines = [line.strip() for line in f.readlines()]
 
 def get_first_num(string):
