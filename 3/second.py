@@ -39,14 +39,12 @@ for (number_x, number_y), number in numbers.items():
 print("silver", count)
 
 # --------------- gold ---------------
-gears = {}  # {(x, y): [number1, number2,...], ...}
+# gears = {}  # {(x, y): [number1, number2,...], ...}
+gears = defaultdict(lambda: [])
 for (number_x, number_y), number in numbers.items():
     for x in range(number_x - 1, number_x + len(number) + 1):
         for y in range(number_y - 1, number_y + 2):
-            symbol = field[(x, y)]
-            if symbol == "*":
-                if (x, y) not in gears:
-                    gears[(x, y)] = []
+            if field[(x, y)] == "*":
                 gears[(x, y)].append(number)
 
 gold = 0
