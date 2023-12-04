@@ -13,7 +13,7 @@ for i, line in enumerate(lines):
     lines[i] = line
 
 ### parse
-data = {}  # {"1": (set(), set())} # first tuple is winning numbers, second what we have
+data = {}  # {"1": (set(), set())} # first tuple are winning numbers, second ours
 for line in lines:
     id, rest = map(str.strip, line.split(":"))
     winning_nums, our_nums = map(lambda x: x.strip().split(" "), rest.split("|"))
@@ -42,7 +42,7 @@ def process_scratchcard(id):
                 scratchcard_count += process_scratchcard(i)
         return scratchcard_count
     else:
-        return
+        return 1
 
 count = 0
 for id in data:
