@@ -6,17 +6,11 @@ with open("input.data", "r") as f:
 # remove "Card "
 lines = [line[5:] for line in lines]
 
-# fuck you eric, :%s/  / /g
-for i, line in enumerate(lines):
-    while "  " in line:
-        line = line.replace("  ", " ")
-    lines[i] = line
-
 ### parse
 data = {}  # {"1": (set(), set())} # first tuple are winning numbers, second ours
 for line in lines:
-    id, rest = map(str.strip, line.split(":"))
-    winning_nums, our_nums = map(lambda x: x.strip().split(" "), rest.split("|"))
+    id, rest = line.split(":")
+    winning_nums, our_nums = map(lambda x: x.split(), rest.split("|"))
     data[int(id)] = (set(winning_nums), set(our_nums))
 
 ### silver
