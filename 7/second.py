@@ -72,7 +72,7 @@ class JokerHand(Hand):
             if card not in card_counts:
                 card_counts[card] = 0
             card_counts[card] += 1
-        counts = [5] if joker_count == 5 else sorted(card_counts.values(), reverse=True)[:2]
+        counts = [0] if joker_count == 5 else sorted(card_counts.values(), reverse=True)[:2]
         counts[0] += joker_count
         self.type = self._calc_type(counts)
 
