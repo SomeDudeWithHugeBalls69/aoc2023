@@ -42,10 +42,10 @@ for galaxy1, galaxy2 in itertools.combinations(galaxies, 2):
     distances[tuple(sorted([galaxy1, galaxy2]))] = abs(x2 - x1) + abs(y2 - y1)
 
 
-print(sum(distances.values())) # 374
+print(sum(distances.values()))
 
 # thought there would be some kind of fun continuous galaxy expansion over time and some other
-# distance metric, so I did the array expansion around...
+# distance metric, so I did the array expansion...
 
 # for gold, just add the expansion factor depending on existance of other galaxy coords that are greater, for each coord
 # can't be bothered
